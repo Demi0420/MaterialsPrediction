@@ -2,9 +2,9 @@
 
 To get started:
 
-	1.	**Download** all the files to your local machine.
+1.	**Download** all the files to your local machine.
  
-	2.	Open a **terminal** in the project directory and run:
+2.	Open a **terminal** in the project directory and run:
 
 ```bash
 pip install -r requirements.txt
