@@ -16,20 +16,16 @@ This will install all the required libraries.
 You can run the following commands to perform predictions for different material properties:
 ### 1.	Predict melting point:
 
-
-    ```bash
     python3 modelA.py --target_col melting_point_log --abrev mp
 
 
 ### 2.	Predict density:
 
-    ```bash
     python3 modelA.py --target_col density --abrev rho
 
 
 ### 3.	Predict formation energy per atom:
 
-    ```bash
     python3 modelA.py --target_col formation_energy_per_atom --abrev fe
 
 
