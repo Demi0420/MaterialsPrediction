@@ -2,11 +2,12 @@
 
 To get started:
 
-	1.	<strong>Download</strong> all the files to your local machine.
+	1.	**Download** all the files to your local machine.
  
-	2.	Open a <strong>terminal</strong> in the project directory and run:
+	2.	Open a **terminal** in the project directory and run:
 
-<code>pip install -r requirements.txt</code>
+```bash
+pip install -r requirements.txt
 
 This will install all the required libraries.
 
