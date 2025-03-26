@@ -1,7 +1,7 @@
 # MaterialsPrediction
 
 To get started:
-	1.	<strong>Download</strong> all the files to your local machine.
+	1.	<strong>Download</strong> all the files to your local machine.\\
 	2.	Open a <strong>terminal</strong> in the project directory and run:
 
 <code>pip install -r requirements.txt</code>
