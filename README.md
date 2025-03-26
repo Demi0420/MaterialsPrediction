@@ -2,7 +2,7 @@
 
 To get started:
 
-1.	**Download** all the files to your local machine.
+1.	**Download** all the files to your local machine, and open [this Google Drive link](https://drive.google.com/file/d/1iBU7PA1sMc4bHE1RyUUUm-0JBAhmv-Wh/view?usp=share_link) to download data_all.csv file.
  
 2.	Open a **terminal** in the project directory and run:
 
@@ -10,6 +10,9 @@ To get started:
     pip install -r requirements.txt
 
 This will install all the required libraries.
+
+
+
 
 ## Running the model
 
