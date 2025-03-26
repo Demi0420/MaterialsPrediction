@@ -6,8 +6,8 @@ To get started:
  
 2.	Open a **terminal** in the project directory and run:
 
-```bash
-pip install -r requirements.txt
+    ```bash
+    pip install -r requirements.txt
 
 This will install all the required libraries.
 
