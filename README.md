@@ -54,6 +54,7 @@ Model B enables the generation of novel materials from the learned latent space,
 
     python modelB.py --mode generate --num_samples 1000
 
+Notice that 
 	•	You can change num_samples to generate more or fewer samples.
  
 	•	Avoid setting num_samples too high (e.g., over 5000), as runtime depends on your system’s CPU/GPU.
