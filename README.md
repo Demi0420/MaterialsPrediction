@@ -74,13 +74,11 @@ Notice that
 
 To pretrain the model using your own dataset, use the following command:
 
-python modelB.py --mode pretrain \
-  --pretrain_data_csv path_to_your_csv.csv \
-  --epochs XXX \
-  --batch_size XXX \
-  --save_endecoder path_to_save_model.pt \
-  --load_endecoder path_to_load_model.pt
+    python modelB.py --mode pretrain \
+     --pretrain_data_csv path_to_your_csv.csv \
+     --epochs XXX \
+     --batch_size XXX \
+     --save_endecoder path_to_save_model.pt \
+     --load_endecoder path_to_load_model.pt
 
 Note: --load_endecoder and --save_endecoder can point to the same .pt file if you’re continuing training.
-
-Let me know if you'd like to add a `License`, `Citation`, `Examples`, or `Contributing` section too!
