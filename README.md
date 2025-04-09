@@ -32,8 +32,8 @@ Model A is used for predicting specific material properties. You can run the fol
 
 ### 1. Predict Melting Point
 
-	```bash
-	python modelA.py --target_col melting_point_log --abrev mp
+    ```bash
+    python modelA.py --target_col melting_point_log --abrev mp
 
 ### 2. Predict Density
 	```bash
