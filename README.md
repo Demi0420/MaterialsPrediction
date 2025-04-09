@@ -17,10 +17,11 @@ This command will install all required Python libraries.
 
 ⚠️ If you need to use the CUDA-enabled version of PyTorch, please install it manually according to your system’s GPU configuration.
 
-4.	Before running the code, place your data_all.csv file in the data_csv/ folder.
+4.	Before running the code, place your data_all.csv file in the `data_csv/` folder.
 Alternatively, you can provide a custom path using the corresponding arguments:
+
 	•	For Model A, modify the path directly in the code.
-	•	For Model B, use --pretrain_data_csv or --generate_data_csv.
+	•	For Model B, use `--pretrain_data_csv` or `--generate_data_csv`.
 
 
 
