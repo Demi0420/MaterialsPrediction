@@ -21,6 +21,7 @@ This command will install all required Python libraries.
 Alternatively, you can provide a custom path using the corresponding arguments:
 
 	•	For Model A, modify the path directly in the code.
+
 	•	For Model B, use `--pretrain_data_csv` or `--generate_data_csv`.
 
 
@@ -29,17 +30,18 @@ Alternatively, you can provide a custom path using the corresponding arguments:
 
 Model A is used for predicting specific material properties. You can run the following commands:
 
-1. Predict Melting Point
+### 1. Predict Melting Point
 
-python modelA.py --target_col melting_point_log --abrev mp
+	```bash
+	python modelA.py --target_col melting_point_log --abrev mp
 
-2. Predict Density
+### 2. Predict Density
+	```bash
+	python modelA.py --target_col density --abrev rho
 
-python modelA.py --target_col density --abrev rho
-
-3. Predict Formation Energy per Atom
-
-python modelA.py --target_col formation_energy_per_atom --abrev fe
+### 3. Predict Formation Energy per Atom
+	```bash
+	python modelA.py --target_col formation_energy_per_atom --abrev fe
 
 💡 Ensure that the input CSV and model settings are correctly configured before running any prediction script.
 
