@@ -32,16 +32,15 @@ Model A is used for predicting specific material properties. You can run the fol
 
 ### 1. Predict Melting Point
 
-    ```bash
     python modelA.py --target_col melting_point_log --abrev mp
 
 ### 2. Predict Density
-	```bash
-	python modelA.py --target_col density --abrev rho
+
+    python modelA.py --target_col density --abrev rho
 
 ### 3. Predict Formation Energy per Atom
-	```bash
-	python modelA.py --target_col formation_energy_per_atom --abrev fe
+
+    python modelA.py --target_col formation_energy_per_atom --abrev fe
 
 💡 Ensure that the input CSV and model settings are correctly configured before running any prediction script.
 
@@ -51,7 +50,7 @@ Model A is used for predicting specific material properties. You can run the fol
 
 Model B enables the generation of novel materials from the learned latent space, and also supports pretraining on custom datasets.
 
-### Generate New Materials
+### 1. Generate New Materials
 
   python modelB.py --mode generate --num_samples 1000
 
@@ -67,7 +66,7 @@ Model B enables the generation of novel materials from the learned latent space,
      --cond_form_energy XXX \
      --t XXX
 
-### Pretrain on Custom Data
+### 2. Pretrain on Custom Data
 
 To pretrain the model using your own dataset, use the following command:
 
