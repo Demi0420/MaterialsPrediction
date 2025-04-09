@@ -62,7 +62,7 @@ Notice that
  
  •	You may also configure other parameters. For example:
 
-   python modelB.py --mode generate \
+    python modelB.py --mode generate \
      --generate_data_csv path_to_your_csv.csv \
      --num_samples 1000 \
      --cond_melting XXX (use log value) \
