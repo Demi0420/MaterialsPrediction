@@ -6,9 +6,13 @@ This repository contains code for training and generating material property pred
 
 1. **Download** all the files in this repository to your local machine.
 
-2. Download the dataset file `data_all.csv` from the following [Google Drive link](https://drive.google.com/file/d/1iBU7PA1sMc4bHE1RyUUUm-0JBAhmv-Wh/view?usp=share_link).
+2. Download the dataset file `data_all.csv` from the following [Google Drive Link](https://drive.google.com/file/d/1iBU7PA1sMc4bHE1RyUUUm-0JBAhmv-Wh/view?usp=share_link).
 
-3. Open a **terminal** in the project directory and run:
+3. Download the dataset file `data_all_with_volume.csv` from the following [Google Drive link]([Google Drive Link](https://drive.google.com/file/d/1y8gZ2XQ4yVoF49rN4mG1BIXX0_f1PXN2/view?usp=share_link).
+
+4. Download the dataset file `data_e43V.csv` from the following [Google Drive link](https://drive.google.com/file/d/1y8gZ2XQ4yVoF49rN4mG1BIXX0_f1PXN2/view?usp=share_link).
+
+5. Open a **terminal** in the project directory and run:
 
    ```bash
    pip install -r requirements.txt
