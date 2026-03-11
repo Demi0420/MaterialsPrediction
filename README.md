@@ -8,7 +8,7 @@ This repository contains code for training and generating material property pred
 
 2. Download the dataset file `data_all.csv` from the following [Google Drive Link](https://drive.google.com/file/d/1iBU7PA1sMc4bHE1RyUUUm-0JBAhmv-Wh/view?usp=share_link).
 
-3. Download the dataset file `data_all_with_volume.csv` from the following [Google Drive link]([Google Drive Link](https://drive.google.com/file/d/1y8gZ2XQ4yVoF49rN4mG1BIXX0_f1PXN2/view?usp=share_link).
+3. Download the dataset file `data_all_with_volume.csv` from the following [Google Drive link](https://drive.google.com/file/d/1y8gZ2XQ4yVoF49rN4mG1BIXX0_f1PXN2/view?usp=share_link).
 
 4. Download the dataset file `data_e43V.csv` from the following [Google Drive link](https://drive.google.com/file/d/1y8gZ2XQ4yVoF49rN4mG1BIXX0_f1PXN2/view?usp=share_link).
 
