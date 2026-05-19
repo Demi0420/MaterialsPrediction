@@ -52,7 +52,8 @@ MaterialsPrediction/
 │   └── unconditional/
 │
 └── dft/
-    └── to be added
+	├── prepare_qe_inputs.py
+	└── make_comment4_variants.py
 ```
 
 ## 2. Requirements
