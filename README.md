@@ -9,7 +9,6 @@ The project mainly includes two models:
 
 In the revised version, we additionally provide model variants, newly trained model weights, benchmark scripts, prediction scripts, and the 20 shortlisted pre-DFT CIF files corresponding to Table 2 in the revised manuscript.
 
----
 
 ## 1. Repository structure
 
@@ -54,14 +53,15 @@ MaterialsPrediction/
 │
 └── dft/
     └── to be added
+```
 
-
-## Requirements
+## 2. Requirements
 
 Install the required dependencies using:
 
 	```bash
 	pip install -r requirements.txt
+	```
 
 If GPU acceleration is used, please make sure that PyTorch is installed with the CUDA version compatible with the local environment.
 
@@ -69,9 +69,10 @@ CUDA availability can be checked by running:
 
 	```bash
 	python test_cuda.py
+	```
 
 
-## Data files
+## 3. Data files
 
 The main data files are stored in the data_csv/ directory:
 
@@ -80,19 +81,54 @@ data_csv/
 ├── data_all.csv
 ├── data_all_with_volume.csv
 └── data_e43V.csv
-
+```
 Download links:
 
-1. `data_all.csv` [Google Drive Link](https://drive.google.com/file/d/1iBU7PA1sMc4bHE1RyUUUm-0JBAhmv-Wh/view?usp=share_link).
+1. `data_all.csv` (Full dataset used for ModelB pretraining) [Google Drive link](https://drive.google.com/file/d/1y8gZ2XQ4yVoF49rN4mG1BIXX0_f1PXN2/view?usp=share_link).
 
-2. `data_all_with_volume.csv` [Google Drive link](https://drive.google.com/file/d/1y8gZ2XQ4yVoF49rN4mG1BIXX0_f1PXN2/view?usp=share_link).
-
-3. `data_e43V.csv` [Google Drive link](https://drive.google.com/file/d/1y8gZ2XQ4yVoF49rN4mG1BIXX0_f1PXN2/view?usp=share_link).
+2. `data_e43V.csv` (Filtered material dataset used for fine-tuning, material generation, and benchmark analyses) [Google Drive link](https://drive.google.com/file/d/1y8gZ2XQ4yVoF49rN4mG1BIXX0_f1PXN2/view?usp=share_link).
 
 
-## Running Model A
+## Model A: latent-space-based generation model
 
-Model A is used for predicting specific material properties. You can run the following commands:
+`modelA.py` implements the latent-space-based generative model used to propose new candidate material structures. The model supports both pretraining and conditional guided generation.
+
+The main trained weight file for the original Model A is:
+
+```text
+modelA-weights/endecoder_model.pt
+```
+
+## 5. Prototype-based variant of Model A
+In the revised version, we additionally provide a prototype-based variant of Model A:
+
+```text
+model_prototype.py
+modelA-weights/prototype_model.pth
+```
+
+The files are used as follows:
+
+| File | Description |
+|---|---|
+| `model_prototype.py` | Prototype-based variant of Model A |
+| `modelA-weights/prototype_model.pth` | Trained weights for the prototype-based Model A variant |
+
+This variant was used to evaluate whether prototype-based latent-space generation can provide an alternative strategy for generating candidate materials.
+
+### 5.1 Training the prototype-based Model A
+```bash
+python model_prototype.py \
+  --mode train \
+  --data_csv data_csv/data_e43V.csv \
+  --epochs 200 \
+  --batch_size 32 \
+  --save_model modelA-weights/prototype_model.pth
+```
+
+### 5.2 Generating candidates using the prototype-based Model A
+
+
 
 ### 1. Predict Melting Point
 
