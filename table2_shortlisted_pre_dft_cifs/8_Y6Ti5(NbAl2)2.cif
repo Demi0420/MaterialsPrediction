@@ -1,0 +1,43 @@
+# generated using pymatgen
+data_Y6Ti5(NbAl2)2
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   8.31779575
+_cell_length_b   8.99340057
+_cell_length_c   11.73303413
+_cell_angle_alpha   95.00000000
+_cell_angle_beta   115.00000000
+_cell_angle_gamma   105.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Y6Ti5(NbAl2)2
+_chemical_formula_sum   'Y6 Ti5 Nb2 Al4'
+_cell_volume   748.74133937
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Y  Y0  1  0.57687253  0.67487305  0.41009027  1
+  Y  Y1  1  0.56681401  0.63309044  0.27379847  1
+  Y  Y2  1  0.48752365  0.48786759  0.39602995  1
+  Y  Y3  1  0.37945852  0.48126146  0.49296439  1
+  Y  Y4  1  0.76010162  0.69907367  0.34642270  1
+  Al  Al5  1  0.17747939  0.73719192  0.70090473  1
+  Al  Al6  1  0.57580578  0.64956391  0.48779252  1
+  Y  Y7  1  0.34716135  0.67109412  0.43829659  1
+  Al  Al8  1  0.82201248  0.43481973  0.12206668  1
+  Al  Al9  1  0.47369063  0.49159884  0.79854167  1
+  Ti  Ti10  1  0.43872997  0.32078582  0.59094501  1
+  Ti  Ti11  1  0.59649861  0.50611907  0.65176368  1
+  Ti  Ti12  1  0.76972038  0.23411345  0.38587168  1
+  Ti  Ti13  1  0.76707631  0.51631516  0.67491698  1
+  Nb  Nb14  1  0.10503834  0.41282755  0.28347337  1
+  Nb  Nb15  1  0.13496038  0.65838242  0.37606966  1
+  Ti  Ti16  1  0.53825074  0.46560651  0.51116878  1
