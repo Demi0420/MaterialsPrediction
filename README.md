@@ -120,7 +120,7 @@ Other generation parameters can also be configured manually. For example:
 ```bash
 python modelA.py \
   --mode generate \
-  --generate_data_csv path_to_your_csv.csv \
+  --generate_data_csv data_csv/data_e43V.csv \
   --num_samples 1000 \
   --cond_melting XXX \
   --cond_density XXX \
@@ -149,9 +149,9 @@ To pretrain Model A using a custom dataset, run:
 ```bash
 python modelA.py \
   --mode pretrain \
-  --pretrain_data_csv path_to_your_csv.csv \
-  --epochs XXX \
-  --batch_size XXX \
+  --pretrain_data_csv data_csv/data_e43V.csv \
+  --epochs 200 \
+  --batch_size 32 \
   --save_endecoder path_to_save_model.pt \
   --load_endecoder path_to_load_model.pt
 ```
@@ -264,13 +264,11 @@ python modelB-formula-group.py \
   --seed 42
 ```
 
-
 ## 8. Prediction for generated structures using Model B
 
 `predictB.py` predicts the properties of newly generated materials that contain only structural information. The script loads the fine-tuned Model B weights and predicts:
 
 - melting point
-
 - density
 
 The melting-point model predicts `melting_point_log`, and the prediction is transformed back to the original melting-point scale using an exponential transformation.
@@ -280,21 +278,15 @@ The melting-point model predicts `melting_point_log`, and the prediction is tran
 The input CSV file should contain at least the following columns:
 
 ```text
-
 formula_pretty
-
 structure
-
 ```
 
 The columns are defined as follows:
 
 | Column | Description |
-
 |---|---|
-
 | `formula_pretty` | Chemical formula of the material |
-
 | `structure` | Structure dictionary saved using `pymatgen.core.Structure.as_dict()` and stored as a JSON string |
 
 Because the provided fine-tuned Model B weights are loaded with `use_extra_fea=False`, the input file does not need to contain `volume`, `volume_per_atom`, or any other extra feature columns.
@@ -302,19 +294,12 @@ Because the provided fine-tuned Model B weights are loaded with `use_extra_fea=F
 ### 8.2 Running prediction
 
 ```bash
-
 python predictB.py \
-
-  --input_csv comment7-DFT-out/concat_only_post_dft_structures_for_prediction.csv \
-
-  --output_csv comment7-DFT-out/concat_only_post_dft_predicted_results.csv \
-
+  --input_csv path_to_your_csv \
+  --output_csv path_to_your_csv \
   --mp_model modelB-weights/best_modelB_mp_finetuned.pth \
-
   --rho_model modelB-weights/best_modelB_rho_finetuned.pth
-
 ```
-
 
 ## 9. Benchmarking generation variants
 
@@ -323,23 +308,16 @@ python predictB.py \
 The script supports three generation variants:
 
 ```text
-
 full_guided
-
 concat_only
-
 unconditional
-
 ```
 
 It also supports two actions:
 
 ```text
-
 generate
-
 train_unconditional
-
 ```
 
 ### 9.1 Variants
@@ -356,159 +334,95 @@ train_unconditional
 
 `unconditional` is a benchmark-only unconditional generation variant. It removes the extra features or conditional information and generates structures only from the latent representation. This variant was used to evaluate the contribution of conditional information.
 
----
+
 
 ### 9.2 Full-guided generation
 
 ```bash
-
 python benchmark_variants.py \
-
   --model_module_path modelA.py \
-
   --variant full_guided \
-
   --action generate \
-
   --weights modelA-weights/endecoder_model.pt \
-
   --data_csv data_csv/data_e43V.csv \
-
   --num_samples 1000 \
-
   --cond_melting 7.244227516 \
-
   --cond_density 8.0 \
-
   --output_dir benchmark_outputs/full_guided
-
 ```
 
 Notes:
-
 - `--cond_melting` is given on the logarithmic scale.
-
 - `7.244227516` is approximately equal to `log(1400)`.
-
 - `--cond_density 8.0` indicates a density condition of 8.0.
 
-The output files are saved to:
-
-```text
-
-benchmark_outputs/full_guided/
-
-```
-
----
 
 ### 9.3 Concat-only generation
 
 ```bash
-
 python benchmark_variants.py \
-
   --model_module_path modelA.py \
-
   --variant concat_only \
-
   --action generate \
-
   --weights modelA-weights/endecoder_model.pt \
-
   --data_csv data_csv/data_e43V.csv \
-
   --num_samples 1000 \
-
   --output_dir benchmark_outputs/concat_only
-
 ```
 
 The output files usually include:
 
 ```text
-
 benchmark_outputs/concat_only/generated_CIF/
-
 benchmark_outputs/concat_only/generated_metadata.csv
-
 ```
 
 This variant uses the same decoder weights as the full model but does not perform full guided latent optimization.
 
----
 
 ### 9.4 Training the unconditional benchmark model
 
 The `unconditional` variant needs to be trained separately:
 
 ```bash
-
 python benchmark_variants.py \
-
   --model_module_path modelA.py \
-
   --variant unconditional \
-
   --action train_unconditional \
-
   --data_csv data_csv/data_e43V.csv \
-
   --epochs 300 \
-
   --batch_size 32 \
-
   --weights benchmark_outputs/unconditional/unconditional_model.pt \
-
   --output_dir benchmark_outputs/unconditional
-
 ```
 
 This command trains the benchmark-only unconditional generation model and saves the weights to:
 
 ```text
-
 benchmark_outputs/unconditional/unconditional_model.pt
-
 ```
-
----
 
 ### 9.5 Generating structures using the unconditional benchmark model
 
 After training the unconditional model, structures can be generated using:
 
 ```bash
-
 python benchmark_variants.py \
-
   --model_module_path modelA.py \
-
   --variant unconditional \
-
   --action generate \
-
   --weights benchmark_outputs/unconditional/unconditional_model.pt \
-
   --data_csv data_csv/data_e43V.csv \
-
   --num_samples 1000 \
-
   --output_dir benchmark_outputs/unconditional
-
 ```
 
 The output files usually include:
 
 ```text
-
 benchmark_outputs/unconditional/generated_CIF/
-
 benchmark_outputs/unconditional/generated_metadata.csv
-
 ```
-
-
 
 ## 10. Shortlisted pre-DFT CIF files for Table 2
 
@@ -517,25 +431,18 @@ In the revised version, we provide the 20 shortlisted pre-DFT CIF files correspo
 These files are stored in:
 
 ```text
-
 table2_shortlisted_pre_dft_cifs/
-
 ```
 
 Example files include:
 
 ```text
-
 1_SrZr7Ge6.cif
-
 2_RbSr(ZrGe)6.cif
-
 ...
-
 ```
 
 These CIF files represent the generated candidate structures before DFT relaxation or calculation. They were used as the input structures for the subsequent DFT validation workflow.
-
 
 
 ## 11. DFT-related files
