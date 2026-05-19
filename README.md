@@ -46,11 +46,6 @@ MaterialsPrediction/
 │   ├── 2_RbSr(ZrGe)6.cif
 │   └── ...
 │
-├── benchmark_outputs/
-│   ├── full_guided/
-│   ├── concat_only/
-│   └── unconditional/
-│
 └── dft/
 	├── prepare_qe_inputs.py
 	└── make_comment4_variants.py
