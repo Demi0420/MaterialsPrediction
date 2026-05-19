@@ -1,33 +1,93 @@
 # MaterialsPrediction
 
-This repository contains code for training and generating material property predictions using machine learning models.
+This repository contains the code, trained model weights, data files, generated structures, and additional experimental results associated with the revised manuscript.
 
-## Getting Started
+The project mainly includes two models:
 
-1. **Download** all the files in this repository to your local machine.
+- `modelA.py`: a latent-space-based generative model for proposing new candidate material structures. It also supports model pretraining.
+- `modelB.py`: a CGCNN-based property prediction model for predicting material properties such as melting point, density, and formation energy.
 
-2. Download the dataset file `data_all.csv` from the following [Google Drive Link](https://drive.google.com/file/d/1iBU7PA1sMc4bHE1RyUUUm-0JBAhmv-Wh/view?usp=share_link).
+In the revised version, we additionally provide model variants, newly trained model weights, benchmark scripts, prediction scripts, and the 20 shortlisted pre-DFT CIF files corresponding to Table 2 in the revised manuscript.
 
-3. Download the dataset file `data_all_with_volume.csv` from the following [Google Drive link](https://drive.google.com/file/d/1y8gZ2XQ4yVoF49rN4mG1BIXX0_f1PXN2/view?usp=share_link).
+---
 
-4. Download the dataset file `data_e43V.csv` from the following [Google Drive link](https://drive.google.com/file/d/1y8gZ2XQ4yVoF49rN4mG1BIXX0_f1PXN2/view?usp=share_link).
+## 1. Repository structure
 
-5. Open a **terminal** in the project directory and run:
+The recommended repository structure is as follows:
 
-   ```bash
-   pip install -r requirements.txt
+```text
+MaterialsPrediction/
+├── README.md
+├── requirements.txt
+│
+├── data_csv/
+│   ├── data_all.csv
+│   ├── data_all_with_volume.csv
+│   └── data_e43V.csv
+│
+├── modelA.py
+├── modelB.py
+├── model_prototype.py
+├── modelB-formula-group.py
+├── predictB.py
+├── benchmark_variants.py
+├── test_cuda.py
+│
+├── modelA-weights/
+│   ├── endecoder_model.pt
+│   └── prototype_model.pth
+│
+├── modelB-weights/
+│   ├── best_modelB_mp_finetuned.pth
+│   ├── best_modelB_rho_finetuned.pth
+│   └── best_modelB_mp_finetuned_grouped.pth
+│
+├── table2_shortlisted_pre_dft_cifs/
+│   ├── 1_SrZr7Ge6.cif
+│   ├── 2_RbSr(ZrGe)6.cif
+│   └── ...
+│
+├── benchmark_outputs/
+│   ├── full_guided/
+│   ├── concat_only/
+│   └── unconditional/
+│
+└── dft/
+    └── to be added
 
-This command will install all required Python libraries.
 
-⚠️ If you need to use the CUDA-enabled version of PyTorch, please install it manually according to your system’s GPU configuration.
+## Requirements
 
-4.	Before running the code, place your data_all.csv file in the `data_csv/` folder.
-Alternatively, you can provide a custom path using the corresponding arguments:
+Install the required dependencies using:
 
-	•	For Model A, modify the path directly in the code.
+	```bash
+	pip install -r requirements.txt
 
-	•	For Model B, use `--pretrain_data_csv` or `--generate_data_csv`.
+If GPU acceleration is used, please make sure that PyTorch is installed with the CUDA version compatible with the local environment.
 
+CUDA availability can be checked by running:
+
+	```bash
+	python test_cuda.py
+
+
+## Data files
+
+The main data files are stored in the data_csv/ directory:
+
+```text
+data_csv/
+├── data_all.csv
+├── data_all_with_volume.csv
+└── data_e43V.csv
+
+Download links:
+
+1. `data_all.csv` [Google Drive Link](https://drive.google.com/file/d/1iBU7PA1sMc4bHE1RyUUUm-0JBAhmv-Wh/view?usp=share_link).
+
+2. `data_all_with_volume.csv` [Google Drive link](https://drive.google.com/file/d/1y8gZ2XQ4yVoF49rN4mG1BIXX0_f1PXN2/view?usp=share_link).
+
+3. `data_e43V.csv` [Google Drive link](https://drive.google.com/file/d/1y8gZ2XQ4yVoF49rN4mG1BIXX0_f1PXN2/view?usp=share_link).
 
 
 ## Running Model A
