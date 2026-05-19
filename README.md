@@ -169,7 +169,6 @@ The arguments are:
 
 Note that `--load_endecoder` and `--save_endecoder` can point to the same `.pt` file if continuing training from an existing checkpoint.
 
----
 
 ## 5. Prototype-based variant of Model A
 
@@ -445,22 +444,168 @@ Example files include:
 These CIF files represent the generated candidate structures before DFT relaxation or calculation. They were used as the input structures for the subsequent DFT validation workflow.
 
 
-## 11. DFT-related files
+## 11. DFT-related workflow
 
-DFT-related files will be added later.
+For the DFT validation step, we provide the scripts used to prepare Quantum ESPRESSO input files from generated CIF structures and to generate additional CIF variants for the robustness analysis described in the response to Comment2.4.
 
-The planned contents include:
+We do not include all Quantum ESPRESSO `.in` and `.out` files in this repository. Instead, we provide the input CIF files and the scripts used to generate the corresponding Quantum ESPRESSO input files. This keeps the repository compact while preserving the reproducibility of the DFT input preparation workflow.
 
-- DFT input files
+The DFT-related scripts are stored in:
 
-- DFT output files
+```text
+dft/
+├── prepare_qe_inputs.py
+└── make_comment4_variants.py
+```
 
-- DFT-relaxed structures
+### 11.1 Preparing Quantum ESPRESSO input files from CIF files
 
-- post-DFT prediction files
+`dft/prepare_qe_inputs.py` converts CIF files into Quantum ESPRESSO input files for variable-cell relaxation (`vc-relax`).
 
-- DFT calculation scripts or workflow notes
+The script reads CIF files using `pymatgen` with:
 
-- DFT validation results related to Table 2 in the revised manuscript
+```python
+CifParser(str(cif_path)).get_structures(primitive=False)
+```
 
-To be added.
+Thus, the conventional structure is kept during CIF parsing.
+
+To generate Quantum ESPRESSO `.in` files from CIF files, run:
+
+```bash
+python dft/prepare_qe_inputs.py \
+  --input_cif_dir table2_shortlisted_pre_dft_cifs \
+  --output_dir qe_inputs/table2_shortlisted \
+  --pseudo_dir path_to_pseudopotentials \
+  --qe_outdir qe_tmp
+```
+
+The arguments are:
+
+| Argument | Description |
+|---|---|
+| `--input_cif_dir` | Directory containing input CIF files |
+| `--output_dir` | Directory where the generated Quantum ESPRESSO `.in` files will be saved |
+| `--pseudo_dir` | Directory containing the pseudopotential files used by Quantum ESPRESSO |
+| `--qe_outdir` | Scratch/output directory used by Quantum ESPRESSO during calculation |
+
+
+### 11.2 Main DFT input settings
+
+The main DFT input settings used in `prepare_qe_inputs.py` are:
+
+```text
+calculation      = 'vc-relax'
+verbosity        = 'high'
+tstress          = .true.
+tprnfor          = .true.
+
+ecutwfc          = 40.0
+ecutrho          = 320.0
+occupations      = 'smearing'
+degauss          = 0.02
+smearing         = 'mp'
+ibrav            = 0
+
+conv_thr         = 0.0001
+mixing_mode      = 'local-TF'
+mixing_beta      = 0.3
+
+ion_dynamics     = 'bfgs'
+cell_dynamics    = 'bfgs'
+cell_factor      = 2.0
+press_conv_thr   = 0.5
+K_POINTS         = 6 6 6 0 0 0
+```
+
+The generated input files include:
+
+```text
+&CONTROL
+&SYSTEM
+&ELECTRONS
+&IONS
+&CELL
+ATOMIC_SPECIES
+K_POINTS automatic
+CELL_PARAMETERS angstrom
+ATOMIC_POSITIONS angstrom
+```
+
+The pseudopotential file names are specified in the `PSEUDO_MAP` dictionary in `prepare_qe_inputs.py`.
+
+
+These CIF files represent the generated candidate structures before DFT relaxation or calculation. They were used as input structures for the subsequent DFT validation workflow.
+
+To prepare Quantum ESPRESSO input files for these structures, run:
+
+```bash
+python dft/prepare_qe_inputs.py \
+  --input_cif_dir table2_shortlisted_pre_dft_cifs \
+  --output_dir qe_inputs/table2_shortlisted \
+  --pseudo_dir path_to_pseudopotentials \
+  --qe_outdir qe_tmp
+```
+
+### 11.4 CIF variants for the robustness analysis in response to Comment #4
+
+We also provide the script used to generate CIF variants for the additional robustness analysis described in the response to Comment #4:
+
+```text
+dft/make_comment4_variants.py
+```
+
+For each input CIF file, the script generates the following seven structures:
+
+```text
+orig.cif
+coord_005_a.cif
+coord_005_b.cif
+coord_010_a.cif
+coord_010_b.cif
+lat_1pct_1deg.cif
+lat_3pct_3deg.cif
+```
+
+These variants include:
+
+| Variant | Description |
+|---|---|
+| `orig.cif` | Original input CIF structure |
+| `coord_005_a.cif` | Structure with random Cartesian coordinate perturbation of 0.05 Å |
+| `coord_005_b.cif` | Another structure with random Cartesian coordinate perturbation of 0.05 Å |
+| `coord_010_a.cif` | Structure with random Cartesian coordinate perturbation of 0.10 Å |
+| `coord_010_b.cif` | Another structure with random Cartesian coordinate perturbation of 0.10 Å |
+| `lat_1pct_1deg.cif` | Structure with random lattice length perturbation of ±1% and angle perturbation of ±1° |
+| `lat_3pct_3deg.cif` | Structure with random lattice length perturbation of ±3% and angle perturbation of ±3° |
+
+To generate the CIF variants, run:
+
+```bash
+python dft/make_comment4_variants.py \
+  --input_dir path_to_original_cifs \
+  --output_dir comment4_cif_variants \
+  --base_seed 20260330
+```
+
+The generated CIF variants can then be converted into Quantum ESPRESSO input files using `prepare_qe_inputs.py`:
+
+```bash
+python dft/prepare_qe_inputs.py \
+  --input_cif_dir comment4_cif_variants \
+  --output_dir qe_inputs/comment4_cif_variants \
+  --pseudo_dir path_to_pseudopotentials \
+  --qe_outdir qe_tmp
+```
+
+### 11.5 Notes on DFT input and output files
+
+This repository does not include all generated Quantum ESPRESSO `.in` or `.out` files.
+
+The `.in` files can be regenerated from the provided CIF files using:
+
+```text
+dft/prepare_qe_inputs.py
+```
+
+The `.out` files are not included because they are large and system-dependent. The provided scripts and CIF files are sufficient to reproduce the DFT input preparation workflow.
