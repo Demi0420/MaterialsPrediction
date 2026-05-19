@@ -1,0 +1,46 @@
+# generated using pymatgen
+data_Y2Ti5Al6Ga4Fe2Cu
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   6.81371880
+_cell_length_b   9.14095497
+_cell_length_c   11.33085155
+_cell_angle_alpha   65.00000000
+_cell_angle_beta   95.00000000
+_cell_angle_gamma   75.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Y2Ti5Al6Ga4Fe2Cu
+_chemical_formula_sum   'Y2 Ti5 Al6 Ga4 Fe2 Cu1'
+_cell_volume   602.04314239
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Fe  Fe0  1  0.28483862  0.57842255  0.43378839  1
+  Fe  Fe1  1  0.55454952  0.72444332  0.27594668  1
+  Al  Al2  1  0.29758519  0.50175256  0.68229544  1
+  Y  Y3  1  0.47529024  0.40174890  0.55980265  1
+  Al  Al4  1  0.78256094  0.61870456  0.36767781  1
+  Al  Al5  1  0.32791096  0.52523023  0.52316040  1
+  Y  Y6  1  0.45005223  0.55129862  0.54116756  1
+  Al  Al7  1  0.51050270  0.60392183  0.42437327  1
+  Al  Al8  1  0.54422444  0.40239346  0.47612041  1
+  Al  Al9  1  0.41243124  0.46571350  0.54564947  1
+  Ti  Ti10  1  0.41508412  0.53535450  0.52940619  1
+  Ti  Ti11  1  0.59193522  0.44789398  0.48666161  1
+  Ti  Ti12  1  0.63005084  0.35221907  0.57351124  1
+  Ti  Ti13  1  0.69779503  0.58733165  0.60796613  1
+  Ti  Ti14  1  0.22316915  0.59582275  0.42856884  1
+  Cu  Cu15  1  0.43470919  0.54958671  0.59265065  1
+  Ga  Ga16  1  0.42495856  0.26256764  0.47440609  1
+  Ga  Ga17  1  0.44424069  0.73167127  0.37859029  1
+  Ga  Ga18  1  0.48221838  0.51044863  0.50316405  1
+  Ga  Ga19  1  0.44884479  0.31281263  0.32034624  1

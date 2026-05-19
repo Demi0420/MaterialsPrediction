@@ -1,0 +1,40 @@
+# generated using pymatgen
+data_RbScTi4Al5Cr3
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   7.90143919
+_cell_length_b   8.76607323
+_cell_length_c   9.40716743
+_cell_angle_alpha   95.00000000
+_cell_angle_beta   110.00000000
+_cell_angle_gamma   80.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   RbScTi4Al5Cr3
+_chemical_formula_sum   'Rb1 Sc1 Ti4 Al5 Cr3'
+_cell_volume   602.71485550
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Cr  Cr0  1  0.60182774  0.66167098  0.49231997  1
+  Cr  Cr1  1  0.53189218  0.38535774  0.29316962  1
+  Cr  Cr2  1  0.45162982  0.61570525  0.36434001  1
+  Sc  Sc3  1  0.34786773  0.46203434  0.53794450  1
+  Al  Al4  1  0.46773937  0.50245029  0.57130420  1
+  Al  Al5  1  0.38120303  0.52510667  0.59465349  1
+  Al  Al6  1  0.44569224  0.59671259  0.73432207  1
+  Al  Al7  1  0.60616976  0.44513154  0.45369983  1
+  Al  Al8  1  0.37864235  0.34556782  0.65969795  1
+  Ti  Ti9  1  0.62158900  0.52778310  0.50651205  1
+  Ti  Ti10  1  0.49123612  0.63864470  0.71390045  1
+  Rb  Rb11  1  0.37198448  0.57235271  0.39382845  1
+  Ti  Ti12  1  0.31398574  0.44171369  0.44048941  1
+  Ti  Ti13  1  0.39434671  0.34381562  0.44000897  1
