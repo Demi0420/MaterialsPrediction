@@ -1,0 +1,64 @@
+&CONTROL
+   calculation      = 'vc-relax'
+   verbosity        = 'high'
+   tstress          = .true.
+   tprnfor          = .true.
+   outdir           = '/home/dell/qe_comment4/qe_tmp'
+   prefix           = '1_SrZr7Ge6__coord_005_a__baseline'
+   pseudo_dir       = '/home/dell/qe_comment4/pseudo'
+/
+&SYSTEM
+   ecutwfc          = 40.0
+   ecutrho          = 320.0
+   occupations      = 'smearing'
+   degauss          = 0.02
+   smearing         = 'mp'
+   ntyp             = 3
+   nat              = 14
+   ibrav            = 0
+/
+&ELECTRONS
+   conv_thr         = 0.0001
+   mixing_mode      = 'local-TF'
+   mixing_beta      = 0.3
+/
+&IONS
+   ion_dynamics     = 'bfgs'
+/
+&CELL
+   cell_dynamics    = 'bfgs'
+   cell_factor      = 2.0
+   press_conv_thr   = 0.5
+/
+&FCP
+/
+&RISM
+/
+ATOMIC_SPECIES
+Sr 87.620000 Sr.UPF
+Zr 91.224000 Zr.UPF
+Ge 72.640000 Ge.UPF
+
+K_POINTS automatic
+6 6 6  0 0 0
+
+CELL_PARAMETERS angstrom
+9.68083851999137 0.00000000000000 -4.51424913923387
+-0.00000000000000 8.38440704000000 0.00000000000000
+0.00000000000000 0.00000000000000 5.38917732000000
+
+ATOMIC_POSITIONS angstrom
+Sr 6.6219154325 2.8948656053 -1.5632596978
+Zr 3.1418843885 5.4922965508 1.1473324274
+Zr 2.1426341418 5.0900762549 0.5466006329
+Zr 4.8083265058 3.9008053817 1.0357135912
+Zr 3.5446854921 3.7303751206 0.8429746236
+Zr 5.7483055283 3.5143569938 -0.0080994062
+Zr 4.8084499365 6.1666064503 0.7805233802
+Zr 4.8872311483 2.4779961572 1.5249578354
+Ge 4.9497819502 4.4745536254 1.3495585249
+Ge 5.7201780456 4.5246345271 -0.0831713583
+Ge 7.1240029255 3.3729304089 -0.0276517611
+Ge 4.4798518793 3.6711258698 1.9719689061
+Ge 5.9239233933 4.2241268983 -1.2281684201
+Ge 5.2195273826 4.9602018737 1.7329727388
